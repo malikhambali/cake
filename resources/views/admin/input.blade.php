@@ -10,17 +10,21 @@
 
     <link rel='shortcut icon' type='image/x-icon' href='../favicon.ico' />
 
-    <title>Admin - BookingJacket</title>
+    <title>Admin - Service Cake</title>
 
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="../metro/css/metro.css" rel="stylesheet">
     <link href="../metro/css/metro-icons.css" rel="stylesheet">
     <link href="../metro/css/metro-responsive.css" rel="stylesheet">
+    <link href="../swal/sweetalert.css" type="text/css" rel="stylesheet" media="screen,projection">
+
 
     <script src="../metro/js/jquery-2.1.3.min.js"></script>
+    <script src="https://raw.githubusercontent.com/igorescobar/jQuery-Mask-Plugin/master/src/jquery.mask.js"></script>
     <script src="../metro/js/jquery.dataTables.min.js"></script>
 
     <script src="../metro/js/metro.js"></script>
+        <script type="text/javascript" src="../swal/sweetalert.min.js"></script>
 
     <style>
         html, body {
@@ -60,6 +64,7 @@
         }
 
         $(function(){
+            $('#telepon').mask('9999999999999');
             $('.sidebar').on('click', 'li', function(){
                 if (!$(this).hasClass('active')) {
                     $('.sidebar li').removeClass('active');
@@ -70,8 +75,8 @@
     </script>
 </head>
 <body class="bg-steel">
-    <div class="app-bar fixed-top darcula" data-role="appbar" style="background-color:#1ABC9C;">
-        <a class="app-bar-element branding"><img src="../metro/images/bj.png"></a>
+    <div class="app-bar fixed-top darcula" data-role="appbar" style="background-color:#03A9F4;">
+        <a class="app-bar-element branding"><img src="../metro/images/bj.png" alt="Service Cake"></a>
         <span class="app-bar-divider"></span>
     </div>
 
@@ -80,30 +85,34 @@
             <div class="row" style="height: 100%">
                 
                 <div class="cell auto-size padding20 bg-white" id="cell-content">
-                    <h1 class="text-light"><a href="<?php echo base_url("admin/str");?>" class="nav-button transform"><span></span></a> TAMBAH DATA ADMIN</h1>
+                    <h1 class="text-light"><a href="{{ ('mulai') }}" class="nav-button transform"><span></span></a> TAMBAH DATA ADMIN</h1>
                     <hr class="thin bg-grayLighter">
                     <br><br>
         <div class="example">
             <br/>
-                    <form method="POST" action="<?php echo base_url("data/save");?>">
+                    <form method="POST" action="{{ ('input') }}" enctype="multipart/form-data">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="cell">
                         <label>Nama Lengkap</label>
                         <div class="input-control text success full-size">
-                            <input type="text" name="nama" required>
+                            <input type="text" name="nama_lengkap" required>
                         </div>
                     </div>
+                    <br>
                     <div class="cell">
                         <label>No Telepon</label>
                         <div class="input-control text success full-size">
-                            <input type="text" name="no_telp" maxlength="13" required>
+                            <input type="text" id="telepon" name="no_telepon" maxlength="13" required>
                         </div>
                     </div>
+                    <br>
                     <div class="cell">
                         <label>Username</label>
                         <div class="input-control text success full-size">
                             <input type="text" name="username" required>
                         </div>
                     </div>
+                    <br>
                     <div class="cell">
                         <label>Password</label>
                         <div class="input-control password success full-size" data-role="input">
@@ -115,6 +124,9 @@
                     <br>
                     <button type="submit" class="button primary"><span class="mif-plus"></span> Simpan</button>
                     </form>
+                    </br>
+                    </br>
+                    </br>
             <br/>
             <br/>
         </div>
@@ -132,4 +144,11 @@
         </div>
     </div>
 </body>
+
+      @if(null !== session('message'))
+  <script type="text/javascript">
+    swal("Anda Berhasil Menambah Admin", "", "success")
+  </script>
+  @endif  
+
 </html>

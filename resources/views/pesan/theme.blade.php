@@ -142,112 +142,33 @@
         </div>
     </section>
 
-    <section class="no-padding" id="kue">
+ <section class="no-padding" id="kue">
         <div class="container-fluid">
             <div class="row no-gutter">
+            @foreach($data as $kue)
                 <div class="col-lg-4 col-sm-6">
                     <a href="#" class="kue-box">
-                        <img src="aset/img/kue/1.jpg" class="img-responsive" alt="">
+                        <img src="/metro/images/{{$kue->img}}" alt="" width="413" height="246">
                         <div class="kue-box-caption">
                             <div class="kue-box-caption-content">
                                 <div class="project-category text-faded">
-                                    Nama Kue
+                                    {{$kue->nama_kue}}
+                                    {{$kue->harga}}
                                 </div>
+                                
                                 <div class="project-name">
-                                    Kue Ulang Tahun
+                          
                                 </div>
                             </div>
                         </div>
                     </a>
                 </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="#" class="kue-box">
-                        <img src="aset/img/kue/2.jpg" class="img-responsive" alt="">
-                        <div class="kue-box-caption">
-                            <div class="kue-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Nama Jaket
-                                </div>
-                                <div class="project-name">
-                                    Jaket BaseBall
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="#" class="kue-box">
-                        <img src="aset/img/kue/3.jpg" class="img-responsive" alt="">
-                        <div class="kue-box-caption">
-                            <div class="kue-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Nama Jaket
-                                </div>
-                                <div class="project-name">
-                                    Jaket Levis
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="#" class="kue-box">
-                        <img src="../aset/img/kue/4.jpg" class="img-responsive" alt="">
-                        <div class="kue-box-caption">
-                            <div class="kue-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Nama Jaket
-                                </div>
-                                <div class="project-name">
-                                    Jaket Sweater
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="#" class="kue-box">
-                        <img src="aset/img/kue/5.jpg" class="img-responsive" alt="">
-                        <div class="kue-box-caption">
-                            <div class="kue-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Nama Jaket
-                                </div>
-                                <div class="project-name">
-                                    Jaket Almameter
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="#" class="kue-box">
-                        <img src="aset/img/kue/6.jpg" class="img-responsive" alt="">
-                        <div class="kue-box-caption">
-                            <div class="kue-box-caption-content">
-                                <div class="project-category text-faded">
-                                    Nama Jaket
-                                </div>
-                                <div class="project-name">
-                                    Jaket Parka
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
+            @endforeach
+   
+                
     </section>
 
-    <aside class="bg-dark">
-        <div class="container text-center">
-            <div class="call-to-action">
-                <h2>Booking Jacket Shop</h2>
-                <a href="#" class="btn btn-default btn-xl wow tada">Pesan Jaket!</a>
-            </div>
-        </div>
-    </aside>
-
+   
     <section id="contact">
         <div class="container">
             <div class="row">
@@ -256,7 +177,7 @@
                     <hr class="primary">
                 <div class="col-lg-4 col-lg-offset-2 text-center">
                     <i class="fa fa-phone fa-3x wow bounceIn"></i>
-                    <p>Redrock Booking Jacket <u>08904323245</u></p>
+                    <p> <u></u></p>
                 </div>
                 <div class="col-lg-4 text-center">
                     <i class="fa fa-envelope-o fa-3x wow bounceIn" data-wow-delay=".1s"></i>

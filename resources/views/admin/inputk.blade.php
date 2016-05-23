@@ -8,9 +8,9 @@
     <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, metro, front-end, frontend, web development">
     <meta name="author" content="Sergey Pimenov and Metro UI CSS contributors">
 
-    <link rel='shortcut icon' type='image/x-icon' href='../metro/favicon.ico' />
+    <link rel='shortcut icon' type='image/x-icon' href='../favicon.ico' />
 
-    <title>Admin - ServiceCake</title>
+    <title>Admin - Service Cake</title>
 
     <link href="../assets/css/style.css" rel="stylesheet">
     <link href="../metro/css/metro.css" rel="stylesheet">
@@ -69,75 +69,48 @@
         })
     </script>
 </head>
-<body class="bg-steel" background="white">
-    <div class="app-bar fixed-top darcula" data-role="appbar" style="background-color:#1ABC9C;">
-        <a class="app-bar-element branding"><img src="../metro/images/bj.png"></a>
+<body class="bg-steel">
+    <div class="app-bar fixed-top darcula" data-role="appbar" style="background-color:#03A9F4;">
+        <a class="app-bar-element branding"><img src="../metro/images/" alt="Service Cake"></a>
         <span class="app-bar-divider"></span>
-    </div>
+        
+
+       </div>
 
     <div class="page-content">
         <div class="flex-grid no-responsive-future" style="height: 100%;">
             <div class="row" style="height: 100%">
                 
                 <div class="cell auto-size padding20 bg-white" id="cell-content">
-                    <h1 class="text-light"><a href="{{ ('admin/str') }}" class="nav-button transform"><span></span></a> PESAN JAKET</h1>
+                    <h1 class="text-light"><a href="{{ ('mulai') }}" class="nav-button transform"><span></span></a> INPUT KUE</h1>
                     <hr class="thin bg-grayLighter">
-                    <br><br>
-        <div class="example">
-            <br/>
-                    <form method="POST" action="{{ ('data/save_jkt') }}" enctype="multipart/form-data">
-                    <div class="cell">
-                        <label>Nama Pemesan</label>
+                    <form method="POST" action="{{ ('ikue') }}" enctype=multipart/form-data>
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}"
+                      <div class="cell">
+                        <label>Nama Kue</label>
                         <div class="input-control text success full-size">
-                            <input type="text" name="nm_pemesan" required>
+                            <input type="text" name="nama_kue" maxlength="100" required>
                         </div>
-                    </div>
-                    <label>Alamat</label>
-                    <div class="input-control textarea success full-size" data-role="input" data-text-auto-resize="true">
-                    <textarea name="alamat"></textarea>
-                    </div>
-                    <div class="cell">
-                        <label>No Telepon</label>
-                        <div class="input-control text success full-size">
-                            <input type="text" name="no_telp" maxlength="13" required>
+                         <div style="margin-top:50px;"class="input-control text success full-size">    
+                        <label>Harga Kue</label>                  
+                            <input type="text" name="harga" maxlength="20" alt="Rp." required>
                         </div>
-                    </div>
-                    <div class="cell">
-                        <label>Jumlah Pesanan</label>
-                        <div class="input-control text success full-size">
-                            <input type="text" name="jmlh_pesanan" maxlength="3" required>
+                        <div style="margin-top:50px;"class="input-control text success full-size">    
+                        <label>Keterangan</label>                  
+                            <input type="text" name="ket" maxlength="1000" required>
                         </div>
-                    </div>    
-                    <label>Jenis Jaket</label>              
-                    <div class="input-control select success full-size">
-                    </div>
-                    <div class="cell">
-                        <label>Ukuran</label>
-                        <div class="input-control text success full-size">
-                            <input type="text" name="ukuran" placeholder=" Ukuran / Jumlah" required>
-                        </div>
-                    </div>
+                    
+
+                  
+                    <div style="margin-top:50px;"class="input-control file success full-size" data-role="input">
                     <label>Gambar</label>
-                    <div class="input-control file success full-size" data-role="input">
-                    <input type="file" name="gambar">
+                    <input type="file" name="img">
                     <button class="button"><span class="mif-folder"></span></button>
                     </div>
-                    <input type="hidden" name="ket" value="Ditunda">
-                    <br><br>
-                    <button type="submit" class="button primary"><span class="mif-plus"></span> Simpan</button>
+                    <tr>
+                    <button style="margin-top:50px;" type="submit" class="button primary"><span class="mif-plus"></span> Simpan</button>
+                    </tr>
                     </form>
-            <br/>
-            <br/>
-        </div>
-
-
-    <!--materialize js-->    <!--prism-->
-    <!--scrollbar-->
-    <!-- chartist -->
-    
-    <!--plugins.js - Some Specific JS codes for Plugin Settings-->
-
-
                 </div>
             </div>
         </div>

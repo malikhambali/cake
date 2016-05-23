@@ -10,9 +10,9 @@
 
     <link rel='shortcut icon' type='image/x-icon' href='../favicon.ico' />
 
-    <title>Admin - BookingJacket</title>
+    <title>Admin - ServiceCake</title>
 
-    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
     <link href="../../metro/css/metro.css" rel="stylesheet">
     <link href="../../metro/css/metro-icons.css" rel="stylesheet">
     <link href="../../metro/css/metro-responsive.css" rel="stylesheet">
@@ -70,35 +70,78 @@
     </script>
 </head>
 <body class="bg-steel">
-    <div class="app-bar fixed-top darcula" data-role="appbar" style="background-color:#1ABC9C;">
-        <a class="app-bar-element branding"><img src="../../metro/images/bj.png"></a>
+    <div class="app-bar fixed-top darcula" data-role="appbar" style="background-color:#03A9F4;">
+        <a class="app-bar-element branding"><img src="" alt="Service Cake"></a>
         <span class="app-bar-divider"></span>
     </div>
 
-    <div class="page-content">
+
+               
+  <div class="page-content">
         <div class="flex-grid no-responsive-future" style="height: 100%;">
             <div class="row" style="height: 100%">
                 
                 <div class="cell auto-size padding20 bg-white" id="cell-content">
-                    <h1 class="text-light"><a href="<?php echo base_url("jaket");?>" class="nav-button transform"><span></span></a> EDIT JENIS JAKET</h1>
+                    <h1 class="text-light"><a href="{{url('daftarkuea')}}" class="nav-button transform"><span></span></a> EDIT DATA KUE</h1>
                     <hr class="thin bg-grayLighter">
                     <br><br>
         <div class="example">
             <br/>
-                    <form method="POST" action="<?php echo base_url("jaket/update");?>">
+       
+                    
+                    <form method="POST" action="{{ url('daftarkuea/update/' .$data['id']) }}"> 
+                    <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                    <input type="hidden" name="id" value="{{ $data['id'] }}">
                     <div class="cell">
-                        <label>Jenis Jaket</label>
+                        <label>Nama Kue</label>
                         <div class="input-control text success full-size">
-                            <input type="text" name="jaket" value="<?php echo $jenis['jaket'];?>" required>
-                            <input type="hidden" name="id" value="<?php echo $jenis['id'];?>" required>
+                            <input type="text" name="nama_kue" value="<?php echo $data['nama_kue'];?>" required>
+                            <input type="hidden" name="id" value="<?php echo $data['id'];?>" required>
                         </div>
                     </div>
-                    <br><br>
-                    <button type="submit" class="button primary"><span class="mif-loop2"></span> Simpan</button>
+                    <label>Harga</label>
+                    <div class="input-control textarea success full-size" data-role="input" data-text-auto-resize="true">
+                    <textarea name="harga" value="<?php echo $data['harga'];?>" required><?php echo $data['harga'];?></textarea>
+                    </div>
+                    <div class="input-control textarea success full-size" data-role="input" data-text-auto-resize="true">
+                    <textarea name="ket" value="<?php echo $data['ket'];?>" required><?php echo $data['ket'];?></textarea>
+                    </div>
+                  
+                    </select>
+                    </div>
+                    <div class="cell">
+                        <h5>Keterangan</h5>
+                        <label class="input-control radio">
+                            <input type="radio" name="status" @if($data->status=='Tersedia')checked @endif value="Tersedia">
+                            <span class="check"></span>
+                            <span class="caption">Tersedia</span>
+                        </label>
+                        <label class="input-control radio">
+                            <input type="radio" name="status" @if($data->status=='tidak tersedia')checked @endif value="tidak tersedia">
+                            <span class="check"></span>
+                            <span class="caption">Tidak Tersedia</span>
+                        </label>
+                        <label class="input-control radio">
+                            <input type="radio" name="status" @if($data->status=='proses')checked @endif value="proses">
+                            <span class="check"></span>
+                            <span class="caption">Diproses</span>
+                        </label>
+                    </div>
+                    <div class="cell">
+                        <div class="input-control">
+                                <button type="submit" class="button primary"><span class="mif-loop2"></span> Simpan</button>
+                        </div>
+                    </div>              
+                    <!-- Radio button -->
                     </form>
+                                   
+            
             <br/>
             <br/>
         </div>
+
+          
+
 
 
     <!--materialize js-->    <!--prism-->
@@ -113,4 +156,5 @@
         </div>
     </div>
 </body>
+
 </html>

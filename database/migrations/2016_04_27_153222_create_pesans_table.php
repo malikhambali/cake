@@ -19,8 +19,10 @@ class CreatePesansTable extends Migration {
 			$table->string('alamat');
 			$table->string('no_tlp');
 			$table->string('jmlh');
+			$table->string('ciri_kue');
 			$table->string('img');
 			$table->string('ket');
+			$table->enum('status',['disetujui','ditunda','tidak disetujui']);
 			$table->timestamps();
 		});
 	}

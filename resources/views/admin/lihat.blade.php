@@ -10,9 +10,9 @@
 
     <link rel='shortcut icon' type='image/x-icon' href='../favicon.ico' />
 
-    <title>Admin - BookingJacket</title>
+    <title>Admin - ServiceCake</title>
 
-    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
     <link href="../../metro/css/metro.css" rel="stylesheet">
     <link href="../../metro/css/metro-icons.css" rel="stylesheet">
     <link href="../../metro/css/metro-responsive.css" rel="stylesheet">
@@ -71,8 +71,8 @@
     </script>
 </head>
 <body class="bg-steel">
-    <div class="app-bar fixed-top darcula" data-role="appbar" style="background-color:#1ABC9C;">
-        <a class="app-bar-element branding"><img src="../../metro/images/bj.png"></a>
+    <div class="app-bar fixed-top darcula" data-role="appbar" style="background-color:#03A9F4;">
+        <a class="app-bar-element branding"><img src="../../metro/images/" alt="Service Cake"></a>
         <span class="app-bar-divider"></span>
     </div>
 
@@ -81,67 +81,56 @@
             <div class="row" style="height: 100%">
                 
                 <div class="cell auto-size padding20 bg-white" id="cell-content">
-                    <h1 class="text-light"><a href="<?php echo base_url("admin");?>" class="nav-button transform"><span></span></a> DETAIL DATA PEMESANAN</h1>
+                    <h1 class="text-light"><a href="<?php echo url("adminh");?>" class="nav-button transform"><span></span></a> DETAIL DATA PEMESANAN</h1>
                     <hr class="thin bg-grayLighter">
                     <br><br>
         <div class="example">
             <br/>
             <div class="panel">
-    <div class="heading" style="background-color:#1ABC9C;">
-        <span class="title"><?php echo $pesanan['nm_pemesan'];?></span>
+    <div class="heading" style="background-color:#0288D1;">
+        <span class="title"><?php echo $pesan['pmsn'];?></span>
     </div>
     <div class="content">
         <br><br>
-        <form method="POST" action="<?php echo base_url("admin/update");?>">
-        <center><img src="../../gambar/<?php echo $pesanan['gambar'];?>" class="gambar"></center>
+        <form method="POST" action="{{ url('adminh/update/' .$pesan['id']) }}">
+        <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+        <center><img src="/material/images/{{ $pesan['img'] }}" class="gambar"></center>
             <center>
                     <table class="padding">
                     <tr>
                         <th>Nama Pemesan</th>
                         
-                        <td><?php echo $pesanan['nm_pemesan'];?></td>
-                        <input type="hidden" name="id" value="<?php echo $pesanan['id'];?>">
+                        <td><?php echo $pesan['pmsn'];?></td>
+                        <input type="hidden" name="id" value="<?php echo $pesan['id'];?>">
                     </tr>
                     <tr>
                         <th>Alamat</th>
                         
-                        <td><?php echo $pesanan['alamat'];?></td>
+                        <td><?php echo $pesan['alamat'];?></td>
                     </tr>
                     <tr>
                         <th>No Telepon</th>
                         
-                        <td><?php echo $pesanan['no_telp'];?></td>
+                        <td><?php echo $pesan['no_tlp'];?></td>
                     </tr>
-                    <tr>
-                        <th>Jumlah Pesanan</th>
+                     <tr>
+                        <th>Jenis Kue</th>
                         
-                        <td><?php echo $pesanan['jmlh_pesanan'];?> pcs</td>
+                        <td><?php echo $pesan['ciri_kue'];?> </td>
                     </tr>
                     <tr>
-                        <th>Jenis Jaket</th>
+                        <th>Jumlah</th>
                         
-                        <td><?php echo $pesanan['jenis_jkt'];?></td>
+                        <td><?php echo $pesan['jmlh'];?> pcs</td>
                     </tr>
-                    <tr>
-                        <th>Ukuran</th>
-                        
-                        <td><?php echo $pesanan['ukuran'];?></td>
-                    </tr>
-                    <tr>
+                      <tr>
                         <th>Keterangan</th>
-                        
-                        <td>
-                        <select name="ket" required>
-                        <option value="<?php echo $pesanan['ket'];?>"><?php echo $pesanan['ket'];?></option>
-                        <option value="Disetujui">Disetujui</option>
-                        <option value="Ditunda">Ditunda</option>
-                        <option value="Ditolak">Ditolak</option>
-                        </select>
-                        </td>
+
+                        <td><?php echo $pesan['ket'];?></td>
                     </tr>
                     <tr>
                         <th><button type="submit" class="button primary"><span class="mif-checkmark"></span></button>
-                        <a href="<?php echo base_url("admin/report/".$pesanan['id']);?>" class="button primary"><span class="mif-printer"></span></a></th>
+                        <a href="{{ url('adminh/print/'.$pesan['id']) }}" class="button primary"><span class="mif-printer"></span></a></th>
                         <td></td>
                     </tr>
                     <br>

@@ -71,8 +71,8 @@
     </script>
 </head>
 <body class="bg-steel">
-    <div class="app-bar fixed-top darcula" data-role="appbar" style="background-color:#1ABC9C;">
-        <a class="app-bar-element branding"><img src="../metro/images/bj.png"></a>
+    <div class="app-bar fixed-top darcula" data-role="appbar" style="background-color:#03A9F4;">
+        <a class="app-bar-element branding"><img src="../metro/images/bj.png" alt="Service Cake"></a>
         <span class="app-bar-divider"></span>
         
 
@@ -83,7 +83,7 @@
             <div class="row" style="height: 100%">
                 
                 <div class="cell auto-size padding20 bg-white" id="cell-content">
-                    <h1 class="text-light"><a href="{{ ('admin/str') }}" class="nav-button transform"><span></span></a> DATA ADMIN</h1>
+                    <h1 class="text-light"><a href="{{ url('mulai') }}" class="nav-button transform"><span></span></a> DATA ADMIN</h1>
                     <hr class="thin bg-grayLighter">
                     <table class="dataTable border bordered" data-role="datatable" data-auto-width="false">
                         <thead>
@@ -95,22 +95,32 @@
                             <td class="sortable-column">Username</td>
                             <td class="sortable-column">Aksi</td>
                         </tr>
+
                         </thead>
                         <tbody>
-                        <tr>
-                            
-                            <td class="sortable-column"></td>
-                            <td class="sortable-column"></td>
-                            <td class="sortable-column"></td>
-                            <td class="sortable-column"></td>
-                            <td><a href="{{ ('data/edit/') }}" class="btn biru"><font color="white">Ubah</font></a>
-                                <a href="{{ ('data/delete/') }}" class="btn biru" 
+                        <?php
+                        $i=1;
+                        foreach($admin as $key){
+                            ?>
+                            <tr>
+                        <td><?php echo $i;?></td>
+                        <td><?php echo $key['nama_lengkap'];?></td>
+                        <td><?php echo $key['no_telepon'];?></td>
+                        <td><?php echo $key['username'];?></td>
+                      <td><a href="{{ ('dataa/edit/'. $key['id']) }}" class="btn biru"><font color="white">Ubah</font></a>
+                                <a href="{{ ('dataa/delete/'. $key['id']) }}" class="btn biru" 
                                 onclick="javascript: return confirm('Apakah anda yakin akan menghapus ?')">
                                 <font color="white">Hapus</font></a></td>
                         </tr>
                         </tr>
+                        <?php
+                        $i++;
+                    }
+                    ?>
                         </tbody>
+
                     </table>
+                    <br><br><br><br>
                 </div>
             </div>
         </div>

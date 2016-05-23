@@ -71,8 +71,8 @@
     </script>
 </head>
 <body class="bg-steel">
-    <div class="app-bar fixed-top darcula" data-role="appbar" style="background-color:#1ABC9C;">
-        <a class="app-bar-element branding"><img src="metro/images/bj.png"></a>
+    <div class="app-bar fixed-top darcula" data-role="appbar" style="background-color:#03A9F4;">
+        <a class="app-bar-element branding"><img src="metro/images/.png" alt="Service Cake"></a>
         <span class="app-bar-divider"></span>
         
 
@@ -84,25 +84,54 @@
             <div class="row" style="height: 100%">
                 
                 <div class="cell auto-size padding20 bg-white" id="cell-content">
-                    <h1 class="text-light"><a href="{{ ('admin/str') }}" class="nav-button transform"><span></span></a> DATA PEMESANAN 
-                    <form action="{{ ('laporan') }}">
+                    <h1 class="text-light"><a href="/mulai" class="nav-button transform"><span></span></a> DATA PEMESANAN 
+                    <form action="{{ ('adminh/laporan') }}">
                     <button class="bt biru" type="submit"><span class="mif-printer"></span></button></h1>
                     </form>
                     <hr class="thin bg-grayLighter">
-                    <table class="dataTable border bordered" data-role="datatable" data-auto-width="false">
+                    <table class="dataTable bordered border" data-role="datatable" data-auto-width="false">
                         <thead>
                         <tr>
                             <td class="sortable-column">ID</td>
                             <td class="sortable-column">Nama Pemesan</td>
                             <td class="sortable-column">No Telp</td>
-                            <td class="sortable-column">Pesanan</td>
                             <td class="sortable-column">Jenis Kue</td>
-                            <td class="sortable-column">Ukuran</td>
+                            <td class="sortable-column">Jumlah</td>
                             <td class="sortable-column">Gambar</td>
                             <td class="sortable-column">Keterangan</td>
+                           
                             <td class="sortable-column">Aksi</td>
+
                         </tr>
                         </thead>
+                                    <tbody>
+                    <?php 
+      $i=1;
+      ?>
+      @foreach($pesan as $key)
+                        <tr>
+                  <td><?php echo $i;?></td>
+                  <td><?php echo $key['pmsn'];?></td>
+                  <td><?php echo $key['no_tlp'];?></td>
+                  <td><?php echo $key['ciri_kue'];?></td>
+                  <td><?php echo $key['jmlh'];?></td>
+                  <td><?php echo $key['img'];?></td>
+                  <td><?php echo strtoupper($key['status']);?></td>
+                  
+                 <td><a href="{{ ('admin/lihat/'.$key['id']) }}" class="btn biru"> 
+                                <font color="white">Detail</font></a>
+                                <a href="{{ ('adminh/editk/'.$key['id']) }}" class="btn biru">
+                                <font color="white">Ubah</fkont></a>
+                                <a href="{{ ('adminh/delete/'.$key['id']) }}" class="btn biru" 
+                                onclick="javascript: return confirm('Apakah anda yakin akan menghapus ?')"> 
+                                <font color="white">Hapus</font></a></td>
+                                 </tr>
+                        <?php
+                $i++;
+                 
+        ?> @endforeach
+                    </tbody>
+        
                     </table>
                     <br><br><br><br>
                 </div>

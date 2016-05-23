@@ -7,10 +7,11 @@
     <meta name="description" content="Metro, a sleek, intuitive, and powerful framework for faster and easier web development for Windows Metro Style.">
     <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, metro, front-end, frontend, web development">
     <meta name="author" content="Sergey Pimenov and Metro UI CSS contributors">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel='shortcut icon' type='image/x-icon' href='../favicon.ico' />
 
-    <title>Admin - BookingJacket</title>
+    <title>Admin - Service Cake</title>
 
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="../../metro/css/metro.css" rel="stylesheet">
@@ -19,6 +20,13 @@
 
     <script src="../../metro/js/jquery-2.1.3.min.js"></script>
     <script src="../../metro/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript">
+        $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+});
+    </script>
 
     <script src="../../metro/js/metro.js"></script>
 
@@ -70,8 +78,8 @@
     </script>
 </head>
 <body class="bg-steel">
-    <div class="app-bar fixed-top darcula" data-role="appbar" style="background-color:#1ABC9C;">
-        <a class="app-bar-element branding"><img src="../../metro/images/bj.png"></a>
+    <div class="app-bar fixed-top darcula" data-role="appbar" style="background-color:#03A9F4;">
+        <a class="app-bar-element branding"><img src="../../metro/images/bj.png" alt="Service Cake"></a>
         <span class="app-bar-divider"></span>
     </div>
 
@@ -80,41 +88,42 @@
             <div class="row" style="height: 100%">
                 
                 <div class="cell auto-size padding20 bg-white" id="cell-content">
-                    <h1 class="text-light"><a href="<?php echo base_url("Data");?>" class="nav-button transform"><span></span></a> EDIT DATA ADMIN</h1>
+                    <h1 class="text-light"><a href="{{ url('dataa') }}" class="nav-button transform"><span></span></a> EDIT DATA ADMIN</h1>
                     <hr class="thin bg-grayLighter">
                     <br><br>
         <div class="example">
             <br/>
-                    <form method="POST" action="<?php echo base_url("data/update");?>">
+                    <form method="post" action="{{ url('updatea') }}">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="cell">
                         <label>Nama Lengkap</label>
                         <div class="input-control text success full-size">
-                            <input type="text" name="nama" value="<?php echo $admin['nama'];?>" required>
-                            <input type="hidden" name="id" value="<?php echo $admin['id'];?>" required>
+                            <input type="text" name="nama_lengkap" value="{{ $admin->nama_lengkap }}" required>
+                            <input type="hidden" name="id" value="{{ $admin->id }}" required>
                         </div>
                     </div>
                     <div class="cell">
                         <label>No Telepon</label>
                         <div class="input-control text success full-size">
-                            <input type="text" name="no_telp" maxlength="13" value="<?php echo $admin['no_telp'];?>" required>
+                            <input type="text" name="no_telepon" maxlength="13" value="{{ $admin->no_telepon }}" required>
                         </div>
                     </div>
                     <div class="cell">
                         <label>Username</label>
                         <div class="input-control text success full-size">
-                            <input type="text" name="username" value="<?php echo $admin['username'];?>" required>
+                            <input type="text" name="username" value="{{ $admin->username }}" required>
                         </div>
                     </div>
                     <div class="cell">
                         <label>Password</label>
                         <div class="input-control password success full-size" data-role="input">
-                           <input type="password" name="password" value="<?php echo $admin['password'];?>" required>
+                           <input type="password" name="password" value="{{ $admin->password }}" required>
                            <button class="button helper-button reveal"><span class="mif-looks"></span></button>
                         </div>
                     </div>
                    
                     <br>
-                    <button type="submit" class="button primary"><span class="mif-loop2"></span> Simpan</button>
+                    <button type="submit" class="button primary"><span class="mif-loop2"></span> Update</button>
                     </form>
             <br/>
             <br/>

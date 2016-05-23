@@ -14,7 +14,14 @@ class DatabaseSeeder extends Seeder {
 	{
 		Model::unguard();
 
+		DB::table('kues')->insert([
+			'kue_nama' => 'Kue Hajatan', 
+			]);
+
+
 		// $this->call('UserTableSeeder');
 	}
+
+
 
 }

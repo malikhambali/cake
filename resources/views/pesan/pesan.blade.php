@@ -42,15 +42,21 @@
   <link href="../material/css/prism.css" type="text/css" rel="stylesheet" media="screen,projection">
   <link href="../material/js/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet" media="screen,projection">
   <link href="../material/js/plugins/chartist-js/chartist.min.css" type="text/css" rel="stylesheet" media="screen,projection">
+  <link href="../swal/sweetalert.css" type="text/css" rel="stylesheet" media="screen,projection">
+
+  <script src="https://raw.githubusercontent.com/igorescobar/jQuery-Mask-Plugin/master/src/jquery.mask.js"></script>   
+    
+
+  <script>
+  $(document).ready(function() {
+    $('select').material_select();
+  });
+  </script>
+
 </head>
 
 <body>
   <!-- Start Page Loading -->
-  <div id="loader-wrapper">
-      <div id="loader"></div>        
-      <div class="loader-section section-left"></div>
-      <div class="loader-section section-right"></div>
-  </div>
   <!-- End Page Loading -->
 
   <!-- //////////////////////////////////////////////////////////////////////////// -->
@@ -60,15 +66,14 @@
         <!-- start header nav-->
         <div class="navbar-fixed">
             <nav class="cyan">
-                <div class="nav-wrapper" style="background-color:#5D4037;">                    
+                <div class="nav-wrapper" style="background-color:#03A9F4;">                    
                     
                     <ul class="left">                      
-                      <li><h1 class="logo-wrapper"><a class="brand-logo darken-1"><img src="../material/images/bk.png" alt="materialize logo"></a> <span class="logo-text">Materialize</span></h1></li>
+                      <li><h1 class="logo-wrapper"><a class="brand-logo darken-1"><img src="../material/images/bk.png" alt="Service Cake"></a>
+                       <span class="logo-text">Materialize</span></h1></li>
                     </ul>
                     <ul class="right hide-on-med-and-down">                        
-                        <li><a href="javascript:void(0);" class="waves-effect waves-block waves-light toggle-fullscreen"><i class="mdi-action-settings-overscan"></i></a>
-                        </li>                       
-                        <li><a href="{{ url('masuk') }}" class="waves-effect waves-block waves-light"><i class="mdi-action-perm-identity"></i>
+                        <li><a href="/masuk" class="waves-effect waves-block waves-light"><i class="mdi-action-perm-identity"></i>
                         </li>                        
                     </ul>
                 </div>
@@ -79,7 +84,7 @@
                 <div class="nav-wrapper">                  
                   <ul id="nav-mobile" class="left hide-on-med-and-down">
                     <li>
-                        <a href="{{ url('theme') }}" class="cyan-text">
+                        <a href="{{ url('/') }}" class="cyan-text">
                             <i class="mdi-action-dashboard"></i>
                             <span>Home</span>
                         </a>
@@ -96,6 +101,13 @@
                             <span>Pesan Kue</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="{{ ( 'daftarkue' ) }}" class="cyan-text">
+                            <i class="mdi-action-book"></i>
+                            <span>Daftar Kue</span>
+                        </a>
+                    </li>
+                
                 </div>
               </nav>
 
@@ -149,7 +161,7 @@
                 <ol class="breadcrumb">
                   <li><font color="#1a85bc">Pesan Kue</font>
                   </li>
-                  <li class="active"></li>
+                  <li class="active">Pesan Disini</li>
                 </ol>
               </div>
             </div>
@@ -164,8 +176,8 @@
 
             <div class="divider"></div>
             <!--Basic Form-->
-           
-                <!-- Form with placeholder -->
+            <!--Basic Form-swal
+sweetalert.csswith placeholder -->
                 
             <!-- Form with icon prefixes -->
               <!-- Form with validation -->
@@ -178,10 +190,11 @@
               <div class="card-panel">
                 <h4 class="header2">Masukan Data Pemesanan</h4>
                 <div class="row">
-                  <form class="col s12" method="POST" action="{{ ('pesan/save') }}" enctype="multipart/form-data">
+                  <form class="col s12" method="POST" action="{{ ('masukkan') }}" enctype="multipart/form-data">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}"> 
                     <div class="row">
                       <div class="input-field col s12">
-                        <input id="email5" type="text" name="nm_pemesan" required>
+                        <input id="email5" type="text" name="pmsn" required>
                         <label for="email">Nama Pemesan</label>
                       </div>
                     </div>
@@ -193,28 +206,34 @@
                       </div>
                     <div class="row">
                       <div class="input-field col s12">
-                        <input id="email5" type="text" maxlength="13" name="no_telp" required>
+                        <input id="telepon" type="text" maxlength="13" name="no_tlp" required>
                         <label for="email">No Telepon</label>
                       </div>
                     </div>
                     <div class="row">
                       <div class="input-field col s12">
-                        <input id="email5" type="text" name="jmlh_pesanan" required>
+                        <input id="email5" type="text" name="jmlh" required>
                         <label for="email">Jumlah Pesanan</label>
                       </div>
                     </div>
                     <div class="row">
                       <div class="input-field col s6">
-                        <select name="jenis_jkt" required>
-                          
+                        <select name="ciri_kue">
+                            <?php 
+                          foreach($kue as $key){
+                          ?>
+                          <option value="<?php echo $key['kue_nama'];?>"><?php echo $key['kue_nama'];?></option>
+                          <?php
+                          }
+                          ?>  
                         </select>
                         <label>Kue</label>
                       </div>
                       <div class="file-field input-field col s6">
-                        <input class="file-path validate" type="text" name="gambar" value="Desain Jaket Anda" disabled="" required>
+                        <input class="file-path validate" type="text" name="img" value="Desain Kue Anda" disabled="kue" required>
                         <div class="btn btn-menu biru">
                           <span>&nbsp;&nbsp; DESAIN &nbsp;&nbsp;</span>
-                          <input type="file" name="gambar"/>
+                          <input type="file" name="img"/>
                         </div>
                       </div>
                       <label> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
@@ -225,24 +244,22 @@
                       &nbsp; &nbsp; &nbsp; &nbsp;
                       <font size="3">Hanya 1 gambar yang dapat di upload</font></label>
                     </div>
-                    <div class="row">
+                       <div class="row">
                     <div class="input-field col s12">
-                        <input id="email5" type="text" name="ukuran" required>
-                        <label for="email">Ukuran</label>
+                        <input id="email5" type="text" name="ket" required>
+                        <label for="email">Keterangan</label>
                       </div>
-                      <label for="email">&nbsp; &nbsp;&nbsp;<font size="3">Contoh - 1 nampan/1 kol</font></label>
-                    </div>
-                    <input type="hidden" name="ket" value="Ditunda">
-                    <input type="hidden" name="harga" value="-">
+                 
                       <div class="row">
                         <div class="input-field col s12">
-                          <button class="btn cyan waves-effect waves-light right" name="upload" type="submit">Submit
+                          <button class="btn cyan waves-effect waves-light right" name="pesan#" type="submit">Submit
                             <i class="mdi-content-send right"></i>
                           </button>
                         </div>
                       </div>
-                    </div>
                   </form>
+                    </div>
+                  
                 </div>
               </div>
             </div>
@@ -267,7 +284,7 @@
 
   <!-- START FOOTER -->
   <footer class="page-footer">
-    <div class="footer-copyright" style="background-color:#1abc9c;">
+    <div class="footer-copyright" style="background-color:#03A9F4;">
       <div class="container">
         <span>CopyRight © 2016 Project</span>
         <span class="right"></span>
@@ -283,7 +300,8 @@
     ================================================ -->
     
     <!-- jQuery Library -->
-    <script type="text/javascript" src="../material/js/jquery-1.11.2.min.js"></script>    
+    <script type="text/javascript" src="../material/js/jquery-1.11.2.min.js"></script> 
+
     <!--materialize js-->
     <script type="text/javascript" src="../material/js/materialize.js"></script>
     <!--prism-->
@@ -295,5 +313,12 @@
     
     <!--plugins.js - Some Specific JS codes for Plugin Settings-->
     <script type="text/javascript" src="../material/js/plugins.js"></script>
+    <script type="text/javascript" src="../swal/sweetalert.min.js"></script>
+
+      @if(null !== session('message'))
+  <script type="text/javascript">
+    swal("Terimakasih Sudah Memesan", "You clicked the button!", "success")
+  </script>
+  @endif  
 
 </html>

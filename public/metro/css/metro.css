@@ -8909,7 +8909,7 @@ div.square-button.big-button {
   position: relative;
   border: 1px #d9d9d9 solid;
   width: 100%;
-  height: 100%;
+  height: 37px;
   padding: .3125rem;
   z-index: 0;
 }

@@ -15,7 +15,8 @@ class CreateUsersTable extends Migration {
 		Schema::create('users', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('name');
+			$table->string('nama_lengkap');
+			$table->string('no_telepon');
 			$table->string('username')->unique();
 			$table->string('password', 60);
 			$table->rememberToken();
@@ -24,7 +25,7 @@ class CreateUsersTable extends Migration {
 
 		DB::table('users')->insert(
 			array(
-				'name' => 'Admin' ,
+				'nama_lengkap' => 'Admin' ,
 				'username' => 'admin',
 				'password' => \Hash::make('admin')
 			)

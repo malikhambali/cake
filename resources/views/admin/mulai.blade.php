@@ -9,7 +9,7 @@
     <meta name="author" content="Sergey Pimenov and Metro UI CSS contributors">
 
     <link rel='shortcut icon' type='image/x-icon' href='../favicon.ico' />
-    <title>Admin - BookingJacket</title>
+    <title>Admin - Service Cake</title>
 
     <link href="../metro/css/metro.css" rel="stylesheet">
     <link href="../metro/css/metro-icons.css" rel="stylesheet">
@@ -301,11 +301,11 @@
     </div>
 
     <div class="tile-area tile-area-scheme-dark fg-white" style="height: 100%; max-height: 100% !important;">
-        <h1 class="tile-area-title"><img src="../metro/images/bk.png"> </h1>
+        <h1 class="tile-area-title"><img src="../metro/images/bk.png" alt="Service Cake"> </h1>
         <div class="tile-area-controls">
             <button class="image-button icon-right bg-transparent fg-white bg-hover-dark no-border"><span class="sub-header no-margin text-light">Admin</span> <span class="icon mif-user"></span></button>
             <button class="square-button bg-transparent fg-white bg-hover-dark no-border" onclick="showCharms('#charmSettings')"><span class="mif-cog"></span></button>
-            <a href="{{ url('pesan') }}" class="square-button bg-transparent fg-white bg-hover-dark no-border"><span class="mif-switch"></span></a>
+            <a href="{{ url('logout') }}" class="square-button bg-transparent fg-white bg-hover-dark no-border"><span class="mif-switch"></span></a>
         </div>
 
         <div class="tile-group double">
@@ -313,7 +313,7 @@
 
             <div class="tile-container">
 
-                <a href="{{ url('adminh') }}" class="tile-wide bg-indigo fg-white" data-role="tile">
+                <a href="{{ url('adminh') }}" class="tile-wide bg-black fg-indigo" data-role="tile">
                     <div class="tile-content iconic">
                         <span class="icon mif-clipboard"></span>
                     </div>
@@ -327,7 +327,7 @@
                         <a class="live-slide"><img src="../metro/images/4.jpg" data-role="fitImage" data-format="fill"></a>
                         <a class="live-slide"><img src="../metro/images/5.jpg" data-role="fitImage" data-format="fill"></a>
                     </div>
-                    <div class="tile-label">Jaket</div>
+                    <div class="tile-label">Kue</div>
                 </div>
                 
 
@@ -338,19 +338,19 @@
         <div class="tile-group double">
             <span class="tile-group-title">Admin</span>
             <div class="tile-container">
-                <a href="{{ ('Data') }}" class="tile-wide bg-darkBlue fg-white" data-role="tile">
+                <a href="{{ ('dataa') }}" class="tile-wide bg-black fg-indigo" data-role="tile">
                     <div class="tile-content iconic">
                         <span class="icon mif-users"></span> 
                     </div>
                     <div class="tile-label">Data Admin</div>
                 </a>
-                <a href="{{ ('Data/jaket') }}" class="tile bg-darkGreen fg-white" data-role="tile">
+                <a href="{{ ('input') }}" class="tile bg-indigo fg-black" data-role="tile">
                     <div class="tile-content iconic">
                         <span class="icon mif-shopping-basket"></span>  
                     </div>
-                    <span class="tile-label">Pesan Jaket</span>
+                    <span class="tile-label">Pesan Kue</span>
                 </a>
-                <a href="{{ ('Data/inpt') }}" class="tile bg-teal fg-white" data-role="tile">
+                <a href="{{ ('input') }}" class="tile bg-indigo fg-black" data-role="tile">
                     <div class="tile-content iconic">
                         <span class="icon mif-pencil"></span>
                     </div>
@@ -362,21 +362,27 @@
             </div>
         </div>
         <div class="tile-group double">
-            <span class="tile-group-title">Jenis Jaket</span>
-                    <a href="{{ ('jaket') }}" class="tile-wide bg-red fg-white" data-role="tile">
+            <span class="tile-group-title">Ciri Kue</span>
+                    <a href="{{ ('daftarkuea') }}" class="tile-wide bg-black fg-indigo" data-role="tile">
                     <div class="tile-content iconic">
-                        <span class="icon mif-file-text"></span>
+                        <span class="icon mif-list"></span>
                     </div>
-                    <div class="tile-label">Data Jenis Jaket</div>
+                    <div class="tile-label">Daftar Kue</div>
                     </a>
-            <span class="tile-group-title">Jenis Jaket</span>
-                    <a href="{{ url('inputk') }}" class="tile-wide bg-amber fg-white" data-role="tile">
+          
+                       <a href="{{ ('inputj') }}" class="tile bg-indigo fg-black" data-role="tile">
                     <div class="tile-content iconic">
-                        <span class="icon mif-folder-plus"></span>
+                        <span class="icon mif-file-text"></span>  
                     </div>
-                    <div class="tile-label">Tambah Jenis Jaket</div>
-                    </a>
-        </div>
+                    <span class="tile-label">Tambah Ciri Kue</span>
+                </a>
+                <a href="{{ ('inputk') }}" class="tile bg-indigo fg-black" data-role="tile">
+                    <div class="tile-content iconic">
+                        <span class="icon mif-pencil"></span>
+                    </div>
+                    <span class="tile-label">Tambah Ciri Kue</span>
+                </a>
+            </div>
             
 
     <!-- hit.ua -->

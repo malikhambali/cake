@@ -5,17 +5,12 @@
 		<title>Login - Admin</title>
 		<meta name="description">
 		<meta name="viewport" content="width=device-width">
-		<link rel="stylesheet" href="../Lgn/styles/vendor.css">
-		<link rel="stylesheet" href="../Lgn/styles/main.css">
+		<link rel="stylesheet" href="../login/styles/vendor.css">
+		<link rel="stylesheet" href="../login/styles/main.css">
 	</head>
 	<div class="login-page">
 		<div class="img-container">
-			<div class="text-center pull-right photo">
-				<img src="../Lgn/images/flat-avatar.png" class="user-avatar img-circle img-responsive"> 
-				<h1>LOGIN ADMIN<br> 
-				</h1>
 			</div>
-		</div>
 		<div class="form-content">
 			<div class="pro-link"> 
 				<a href="{{ url('pesan') }}">BATAL LOGIN</a> 
@@ -29,16 +24,23 @@
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				<div class="table-form">
 					<div class="form-groups">
+					<h1>LOGIN ADMIN<br> 
+					</h1>
+			
 						<div class="form-group"> 
-							<input type="text" name="username" class="form-control input-lg" placeholder="USERNAME" required> 
+			
+						<input type="text" name="username" class="form-control input-lg" placeholder="USERNAME" required> 
 						</div>
 						<div class="form-group"> 
 							<input type="password" name="password" class="form-control input-lg" placeholder="PASSWORD" required> 
 						</div>
 					</div>
-					<div class=button-container> 
+					<div class="button-container">
+					<br>						 
+					<br>						 
+					<br>						 
 						<button type="submit" class="btn btn-default login">
-						<img src="../Lgn/images/arrow.png">
+						<img src="../login/images/arrow.png">
 						</button> 
 					</div>
 				</div>

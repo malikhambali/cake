@@ -8,11 +8,11 @@
     <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, metro, front-end, frontend, web development">
     <meta name="author" content="Sergey Pimenov and Metro UI CSS contributors">
 
-    <link rel='shortcut icon' type='image/x-icon' href='../metro/favicon.ico' />
+    <link rel='shortcut icon' type='image/x-icon' href='../favicon.ico' />
 
-    <title>Admin - BookingJacket</title>
+    <title>Admin - Service Cake</title>
 
-    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
     <link href="../metro/css/metro.css" rel="stylesheet">
     <link href="../metro/css/metro-icons.css" rel="stylesheet">
     <link href="../metro/css/metro-responsive.css" rel="stylesheet">
@@ -69,44 +69,63 @@
         })
     </script>
 </head>
-<body class="bg-steel" background="white">
-    <div class="app-bar fixed-top darcula" data-role="appbar" style="background-color:#1ABC9C;">
-        <a class="app-bar-element branding"><img src="../metro/images/bj.png"></a>
+<body class="bg-steel">
+    <div class="app-bar fixed-top darcula" data-role="appbar" style="background-color:#03A9F4;">
+        <a class="app-bar-element branding"><img src="../metro/images/" alt="Service Cake"></a>
         <span class="app-bar-divider"></span>
-    </div>
+        
+
+         </div>
 
     <div class="page-content">
         <div class="flex-grid no-responsive-future" style="height: 100%;">
             <div class="row" style="height: 100%">
                 
                 <div class="cell auto-size padding20 bg-white" id="cell-content">
-                    <h1 class="text-light"><a href="<?php echo base_url("admin/str");?>" class="nav-button transform"><span></span></a> TAMBAH JENIS JAKET</h1>
+                    <h1 class="text-light"><a href="{{ ('mulai') }}" class="nav-button transform"><span></span></a>INPUT CIRI KUE</h1>
                     <hr class="thin bg-grayLighter">
-                    <br><br>
-        <div class="example">
-            <br/>
-                    <form method="POST" action="<?php echo base_url("jaket/save");?>">
-                    <div class="cell">
-                        <label>Jenis Jaket</label>
+                    <form method="POST" action="{{ ('jenis_kue') }}" enctype=multipart/form-data>
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}"
+                      <div class="cell">
+                        <label>Nama Kue</label>
                         <div class="input-control text success full-size">
-                            <input type="text" name="jaket" required>
+                            <input type="text" name="kue_nama" maxlength="20" required>
                         </div>
-                    </div>
-                    <br><br>
-                    <button type="submit" class="button primary"><span class="mif-plus"></span> Simpan</button>
+                     <tr>
+                    <button style="margin-top:50px;" type="submit" class="button primary"><span class="mif-plus"></span> Simpan</button>
+                    </tr>
                     </form>
-            <br/>
-            <br/>
-        </div>
+                      <table class="dataTable border bordered" data-role="datatable" data-auto-width="false">
+                        <thead>
+                        <tr>
+                            
+                            <td class="sortable-column">ID</td>
+                            <td class="sortable-column">Ciri Kue</td>
+                            <td class="sortable-column">Aksi</td>
+                        </tr>
 
+                        </thead>
+                        <tbody>
+                        <?php
+                        $i=1;
+                        foreach($kue as $key){
+                            ?>
+                            <tr>
+                        <td><?php echo $i;?></td>
+                        <td><?php echo $key['kue_nama'];?></td>
+                      <td>     <a href="{{ ('kue/delete/'. $key['id']) }}" class="btn biru" 
+                                 onclick="javascript: return confirm('Apakah anda yakin akan menghapus ?')">
+                                <font position="center" color="white">Hapus</font></a></td>
+                        </tr>
+                        </tr>
+                        <?php
+                        $i++;
+                    }
+                    ?>
+                        </tbody>
 
-    <!--materialize js-->    <!--prism-->
-    <!--scrollbar-->
-    <!-- chartist -->
-    
-    <!--plugins.js - Some Specific JS codes for Plugin Settings-->
-
-
+                    </table>
+                  
                 </div>
             </div>
         </div>

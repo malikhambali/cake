@@ -4,6 +4,11 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use App\kue;
+use App\pesan;
+use App\detail;
+use App\ikue;
+use Input;
 
 class kuecontroller extends Controller {
 
@@ -12,20 +17,32 @@ class kuecontroller extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index()
-	{
-	}
 	public function home()
 	{
-		return view('home');
+		$data = ikue::all();
+		dd($data);
+		// return view('home')->with('data', $data);
+	}
+	public function daftarkue()
+	{
+		$data = ikue::orderBy('id','desc')->get();
+		return view('pesan/daftarkue', ['data'=>$data]);
 	}
 	public function data()
 	{
-		return view ('pesan/data');
+
+		$pesan = pesan::orderBy('id','desc')->get();
+		return view ('pesan/data',['pesan'=>$pesan]);
 	}
-	public function detail()
+	public function detail($id)
 	{
-		return view ('detail');
+		$pesan = pesan::find($id);
+		return view ('pesan/detail',['pesan'=>$pesan]);
+	}
+	public function detailkue($id)
+	{
+		$data = ikue::find($id);
+		return view('pesan/detailkue', ['data'=>$data]);
 	}
 	public function edit()
 	{
@@ -37,11 +54,13 @@ class kuecontroller extends Controller {
 	}
 	public function pesan()
 	{
-		return view ('pesan/pesan');
+		$kue = kue::all();
+		return view ('pesan/pesan',['kue'=>$kue]);
 	}
 	public function theme()
 	{
-		return view ('pesan/theme');
+		$data = ikue::all();
+		return view ('pesan/theme',['data'=>$data]);
 	}
 	
 	/**
@@ -53,4 +72,53 @@ class kuecontroller extends Controller {
 	{
 		
 	}
+	
+	public function simpan(Request $request)
+	{
+		// $this->load->library('masukkan');
+		// $nmfile = "file__".time();
+		// $config['upload_path'] = './gambar/';
+		// $config['allowed_types'] = 'gif|jgp|png|jpeg|bmp';
+		// $config['max_size'] = '2048';
+		// $config['file_name'] = $nmfile;
+
+		// $this->upload->initialize($config);
+
+		// if($_FILES['gambar']['name'])
+		// {
+		// 	if($this->upload->do_upload('gambar'))
+		// 	{
+		// 		$gbr = $this->upload->data();
+		// 		$this->db->insert('pesan', array(
+		// 			'img' =>$gbr['file_name'],
+		// 			'pmsn' =>$this->input->post('pmsn'),
+		// 			'alamat' =>$this->input->post('alamat'),
+		// 			'no_telp' =>$this->input->post('no_telp'),
+		// 			'jmlh' =>$this->input->post('jmlh'),
+		// 			'ket' =>$this->input->post('ket')
+		// 			));
+		// 		redirect(base_url('pesan'));
+		// 	} redirect(base_url('pesan'));
+		// }
+
+		$pesan = new pesan;
+		$pesan->pmsn = Input::get('pmsn');
+		$pesan->alamat = Input::get('alamat');
+		$pesan->no_tlp = Input::get('no_tlp');
+		$pesan->jmlh = Input::get('jmlh');
+		$pesan->ciri_kue = Input::get('ciri_kue');
+		$foto = Input::file('img');
+		$ext = $foto->getClientOriginalExtension();
+		$image_name = round(microtime(true)).'.'.$ext;
+		$foto->move('material/images',$image_name);
+		
+		$pesan->img = $image_name;
+		$pesan->ket = Input::get('ket');
+		$pesan->status = 'ditunda';	
+		$pesan->save();
+
+		$request->session()->flash('message', 'Pemesanan Sukses!');
+		return redirect('pesan#');
+	}
+
 }

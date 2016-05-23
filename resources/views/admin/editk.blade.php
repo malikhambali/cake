@@ -10,9 +10,9 @@
 
     <link rel='shortcut icon' type='image/x-icon' href='../favicon.ico' />
 
-    <title>Admin - BookingJacket</title>
+    <title>Admin - ServiceCake</title>
 
-    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
     <link href="../../metro/css/metro.css" rel="stylesheet">
     <link href="../../metro/css/metro-icons.css" rel="stylesheet">
     <link href="../../metro/css/metro-responsive.css" rel="stylesheet">
@@ -70,79 +70,86 @@
     </script>
 </head>
 <body class="bg-steel">
-    <div class="app-bar fixed-top darcula" data-role="appbar" style="background-color:#1ABC9C;">
-        <a class="app-bar-element branding"><img src="../../metro/images/bj.png"></a>
+    <div class="app-bar fixed-top darcula" data-role="appbar" style="background-color:#5D4037;">
+        <a class="app-bar-element branding"><img src="" alt="Service Cake"></a>
         <span class="app-bar-divider"></span>
     </div>
 
-    <div class="page-content">
+
+               
+  <div class="page-content">
         <div class="flex-grid no-responsive-future" style="height: 100%;">
             <div class="row" style="height: 100%">
                 
                 <div class="cell auto-size padding20 bg-white" id="cell-content">
-                    <h1 class="text-light"><a href="<?php echo base_url("admin");?>" class="nav-button transform"><span></span></a> EDIT DATA PEMESANAN</h1>
+                    <h1 class="text-light"><a href="{{url('adminh')}}" class="nav-button transform"><span></span></a> EDIT DATA PEMESANAN</h1>
                     <hr class="thin bg-grayLighter">
                     <br><br>
         <div class="example">
             <br/>
-                    <form method="POST" action="<?php echo base_url("admin/update");?>">
+       
+                    
+                    <form method="POST" action="{{ url('adminh/update/' .$pesan['id']) }}"> 
+                    <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                    <input type="hidden" name="id" value="{{ $pesan['id'] }}">
                     <div class="cell">
                         <label>Nama Pemesan</label>
                         <div class="input-control text success full-size">
-                            <input type="text" name="nm_pemesan" value="<?php echo $pesanan['nm_pemesan'];?>" required>
-                            <input type="hidden" name="id" value="<?php echo $pesanan['id'];?>" required>
+                            <input type="text" name="pmsn" value="<?php echo $pesan['pmsn'];?>" required>
+                            <input type="hidden" name="id" value="<?php echo $pesan['id'];?>" required>
                         </div>
                     </div>
                     <label>Alamat</label>
                     <div class="input-control textarea success full-size" data-role="input" data-text-auto-resize="true">
-                    <textarea name="alamat" value="<?php echo $pesanan['alamat'];?>" required><?php echo $pesanan['alamat'];?></textarea>
+                    <textarea name="alamat" value="<?php echo $pesan['alamat'];?>" required><?php echo $pesan['alamat'];?></textarea>
                     </div>
                     <div class="cell">
                         <label>No Telepon</label>
                         <div class="input-control text success full-size">
-                            <input type="text" name="no_telp" maxlength="13" value="<?php echo $pesanan['no_telp'];?>" required>
+                            <input type="text" name="no_tlp" maxlength="13" value="<?php echo $pesan['no_tlp'];?>" required>
                         </div>
                     </div>
                     <div class="cell">
                         <label>Jumlah Pesanan</label>
                         <div class="input-control text success full-size">
-                            <input type="text" name="jmlh_pesanan" maxlength="3" value="<?php echo $pesanan['jmlh_pesanan'];?>" required>
+                            <input type="text" name="jmlh" maxlength="3" value="<?php echo $pesan['jmlh'];?>" required>
                         </div>
                     </div>    
-                    <label>Jenis Jaket</label>              
-                    <div class="input-control select success full-size">
-                    <select name="jenis_jkt" required>
-                          <option value="<?php echo $pesanan['jenis_jkt'];?>"><?php echo $pesanan['jenis_jkt'];?></option>
-                          <?php 
-                          foreach($jenis as $key){
-                          ?>
-                          <option value="<?php echo $key['jaket'];?>"><?php echo $key['jaket'];?></option>
-                          <?php
-                          }
-                          ?>
                     </select>
                     </div>
                     <div class="cell">
-                        <label>Ukuran</label>
-                        <div class="input-control text success full-size">
-                            <input type="text" name="ukuran" placeholder=" Ukuran / Jumlah" value="<?php echo $pesanan['ukuran'];?>" required>
+                        <h5>Keterangan</h5>
+                        <label class="input-control radio">
+                            <input type="radio" name="status" @if($pesan->status=='disetujui')checked @endif value="disetujui">
+                            <span class="check"></span>
+                            <span class="caption">Disetujui</span>
+                        </label>
+                        <label class="input-control radio">
+                            <input type="radio" name="status" @if($pesan->status=='tidak disetujui')checked @endif value="tidak disetujui">
+                            <span class="check"></span>
+                            <span class="caption">Tidak disetujui</span>
+                        </label>
+                        <label class="input-control radio">
+                            <input type="radio" name="status" @if($pesan->status=='ditunda')checked @endif value="ditunda">
+                            <span class="check"></span>
+                            <span class="caption">Ditunda</span>
+                        </label>
+                    </div>
+                    <div class="cell">
+                        <div class="input-control">
+                                <button type="submit" class="button primary"><span class="mif-loop2"></span> Simpan</button>
                         </div>
-                    </div>
-                    <label>Keterangan</label>              
-                    <div class="input-control select success full-size">
-                    <select name="ket" required>
-                    <option value="<?php echo $pesanan['ket'];?>"><?php echo $pesanan['ket'];?></option>
-                    <option value="Disetujui">Disetujui</option>
-                    <option value="Ditunda">Ditunda</option>
-                    <option value="Ditolak">Ditolak</option>
-                    </select>
-                    </div>
-                    <br><br>
-                    <button type="submit" class="button primary"><span class="mif-loop2"></span> Simpan</button>
+                    </div>              
+                    <!-- Radio button -->
                     </form>
+                                   
+            
             <br/>
             <br/>
         </div>
+
+          
+
 
 
     <!--materialize js-->    <!--prism-->
@@ -157,4 +164,5 @@
         </div>
     </div>
 </body>
+
 </html>
